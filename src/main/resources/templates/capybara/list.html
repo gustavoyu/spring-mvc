@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Products page</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <link href="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js" th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+    <link href="../static/css/spring-core.css" th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(capybaras)}">
+        <h2>Capybara List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Car</th>
+                <th>Image Url</th>
+                <th>List</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="capybara : ${capybaras}">
+                <td th:text="${capybara.id}"></td>
+                <td th:text="${capybara.name}"></td>
+                <td th:text="${capybara.car}"></td>
+                <td th:text="${capybara.imageUrl}"></td>
+                <td><a th:href="${'/capybara/' + capybara.id}">View</a></td>
+                <td><a th:href="${'/capybara/delete/' + capybara.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <a th:href="${'/capybara/new'}">New capybara</a>
+    </div>
+</div>
+
+</body>
+</html>
